@@ -1,5 +1,5 @@
 /**
- * Landing Page - Cyberpunk HUD Theme
+ * Landing Page - Professional Modern Theme
  */
 
 /* Hero Section */
@@ -8,7 +8,7 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--hud-bg) 0%, #0a0d10 100%);
+  background: linear-gradient(180deg, var(--pro-bg) 0%, #020617 100%);
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -19,26 +19,14 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 247, 163, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 247, 163, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
   pointer-events: none;
 }
 
 .scanline {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, var(--hud-primary), transparent);
-  opacity: 0.6;
-  animation: scanMove 4s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes scanMove {
-  0% { top: 0; }
-  100% { top: 100%; }
+  display: none;
 }
 
 .heroGlitch {
@@ -46,36 +34,31 @@
 }
 
 .heroTitle {
-  font-family: var(--hud-font-display);
-  font-size: 4rem;
-  font-weight: 900;
-  color: var(--hud-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  text-shadow:
-    0 0 20px rgba(0, 247, 163, 0.5),
-    0 0 40px rgba(0, 247, 163, 0.3),
-    0 0 60px rgba(0, 247, 163, 0.2);
+  font-family: var(--pro-font-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--pro-text-light);
   margin-bottom: 1rem;
   border: none;
   padding: 0;
 }
 
 .heroSubtitle {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 1.3rem;
-  color: var(--hud-accent);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+  font-family: var(--ifm-font-family-base);
+  font-size: 1.25rem;
+  color: var(--pro-text-body);
   margin-bottom: 2.5rem;
-  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
 .heroStats {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
   margin-bottom: 3rem;
 }
 
@@ -86,25 +69,23 @@
 }
 
 .statValue {
-  font-family: var(--hud-font-display);
-  font-size: 2rem;
+  font-family: var(--pro-font-display);
+  font-size: 2.5rem;
   font-weight: 700;
-  color: var(--hud-primary);
-  text-shadow: 0 0 10px rgba(0, 247, 163, 0.5);
+  color: var(--pro-primary);
 }
 
 .statLabel {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.75rem;
-  color: var(--hud-text-body);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.85rem;
+  color: var(--pro-text-body);
+  margin-top: 0.25rem;
 }
 
 .statDivider {
   width: 1px;
-  height: 40px;
-  background: linear-gradient(180deg, transparent, var(--hud-primary), transparent);
+  height: 50px;
+  background: var(--pro-border);
 }
 
 .buttons {
@@ -115,14 +96,14 @@
 }
 
 .heroButton {
-  font-size: 0.9rem !important;
-  padding: 14px 32px !important;
+  font-size: 0.95rem !important;
+  padding: 14px 28px !important;
 }
 
 /* Features Section */
 .features {
   padding: 5rem 0;
-  background: var(--hud-bg);
+  background: var(--pro-bg);
   position: relative;
 }
 
@@ -133,39 +114,38 @@
 
 .sectionTag {
   display: inline-block;
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.8rem;
-  color: var(--hud-accent);
-  letter-spacing: 0.1em;
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.85rem;
+  color: var(--pro-primary);
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .sectionTitle {
-  font-family: var(--hud-font-display);
+  font-family: var(--pro-font-display);
   font-size: 2rem;
-  color: var(--hud-text-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  color: var(--pro-text-light);
+  font-weight: 600;
   margin: 0;
   border: none;
 }
 
 .featureCard {
-  background: rgba(17, 20, 24, 0.6);
-  border: 1px solid rgba(0, 247, 163, 0.15);
-  border-radius: 4px;
+  background: var(--pro-panel);
+  border: 1px solid var(--pro-border);
+  border-radius: 12px;
   padding: 2rem;
   height: 100%;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   margin-bottom: 1.5rem;
 }
 
 .featureCard:hover {
-  border-color: var(--hud-primary);
+  border-color: var(--pro-primary);
   transform: translateY(-4px);
-  box-shadow: 0 10px 40px rgba(0, 247, 163, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .featureCard:hover .featureGlow {
@@ -177,31 +157,29 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--hud-primary), transparent);
+  height: 3px;
+  background: linear-gradient(90deg, var(--pro-primary), var(--pro-accent));
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .featureIcon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  filter: drop-shadow(0 0 10px rgba(0, 247, 163, 0.3));
 }
 
 .featureTitle {
-  font-family: var(--hud-font-display);
-  font-size: 1.1rem;
-  color: var(--hud-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--pro-font-display);
+  font-size: 1.15rem;
+  color: var(--pro-text-light);
+  font-weight: 600;
   margin-bottom: 0.75rem;
   border: none;
 }
 
 .featureDesc {
   font-size: 0.95rem;
-  color: var(--hud-text-body);
+  color: var(--pro-text-body);
   line-height: 1.6;
   margin: 0;
 }
@@ -209,7 +187,7 @@
 /* Tech Stack Section */
 .techStack {
   padding: 5rem 0;
-  background: linear-gradient(180deg, var(--hud-bg) 0%, #080a0c 100%);
+  background: linear-gradient(180deg, var(--pro-bg) 0%, #020617 100%);
 }
 
 .techGrid {
@@ -225,38 +203,35 @@
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
-  background: rgba(17, 20, 24, 0.4);
-  border: 1px solid rgba(0, 234, 255, 0.1);
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  background: var(--pro-panel);
+  border: 1px solid var(--pro-border);
+  border-radius: 10px;
+  transition: all 0.2s ease;
 }
 
 .techItem:hover {
-  border-color: var(--hud-accent);
-  background: rgba(0, 234, 255, 0.05);
+  border-color: var(--pro-accent);
   transform: translateY(-2px);
 }
 
 .techName {
-  font-family: var(--hud-font-display);
+  font-family: var(--pro-font-display);
   font-size: 1rem;
-  color: var(--hud-accent);
-  font-weight: 700;
+  color: var(--pro-text-light);
+  font-weight: 600;
   margin-bottom: 0.25rem;
 }
 
 .techCategory {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.7rem;
-  color: var(--hud-text-body);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.75rem;
+  color: var(--pro-text-body);
 }
 
 /* CTA Section */
 .ctaSection {
   padding: 6rem 0;
-  background: var(--hud-bg);
+  background: var(--pro-bg);
   position: relative;
 }
 
@@ -268,7 +243,7 @@
   transform: translateX(-50%);
   width: 60%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--hud-primary), transparent);
+  background: linear-gradient(90deg, transparent, var(--pro-border), transparent);
 }
 
 .ctaContent {
@@ -278,19 +253,17 @@
 }
 
 .ctaTitle {
-  font-family: var(--hud-font-display);
+  font-family: var(--pro-font-display);
   font-size: 2.5rem;
-  color: var(--hud-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  color: var(--pro-text-light);
+  font-weight: 700;
   margin-bottom: 1rem;
-  text-shadow: 0 0 20px rgba(0, 247, 163, 0.3);
   border: none;
 }
 
 .ctaDesc {
   font-size: 1.1rem;
-  color: var(--hud-text-body);
+  color: var(--pro-text-body);
   margin-bottom: 2rem;
   line-height: 1.7;
 }
@@ -311,20 +284,18 @@
 
   .heroTitle {
     font-size: 2.5rem;
-    letter-spacing: 0.1em;
   }
 
   .heroSubtitle {
     font-size: 1rem;
-    letter-spacing: 0.1em;
   }
 
   .heroStats {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .statValue {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .sectionTitle {

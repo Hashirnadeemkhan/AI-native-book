@@ -17,98 +17,90 @@ const SettingsButton = () => {
 
   return (
     <div
-      className="relative"
+      style={{ position: 'relative' }}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
       <button
         onClick={handleClick}
-        className="cyber-button secondary"
+        className="settings-btn"
         style={{
           padding: '8px 12px',
-          fontSize: '0.75rem',
+          fontSize: '0.8rem',
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
           minWidth: 'auto',
-          transition: 'all 0.3s ease',
-          position: 'relative',
+          transition: 'all 0.2s ease',
+          background: 'transparent',
+          border: '1px solid var(--pro-border)',
+          borderRadius: '6px',
+          color: 'var(--pro-text-body)',
+          fontFamily: 'Inter, system-ui, sans-serif',
+          fontWeight: '500',
+          cursor: 'pointer',
         }}
         aria-label="Update Personalization Settings"
       >
         <svg
-          width="18"
-          height="18"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          style={{
-            transition: 'transform 0.6s ease',
-          }}
           className="settings-gear"
         >
           <circle cx="12" cy="12" r="3"/>
-          <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
         </svg>
-        <span className="hidden md:inline" style={{ letterSpacing: '0.08em' }}>
-          CALIBRATE
-        </span>
       </button>
 
       {/* Tooltip */}
       {showTooltip && (
         <div
-          className="absolute top-full mt-2 right-0 z-50 pointer-events-none"
           style={{
+            position: 'absolute',
+            top: '100%',
+            marginTop: '8px',
+            right: 0,
+            zIndex: 50,
+            pointerEvents: 'none',
             animation: 'fadeIn 0.2s ease',
           }}
         >
           <div
             style={{
-              background: 'var(--hud-bg)',
-              border: '1px solid var(--hud-accent)',
+              background: 'var(--pro-panel)',
+              border: '1px solid var(--pro-border)',
               padding: '8px 12px',
-              borderRadius: '2px',
-              boxShadow: '0 0 20px rgba(0, 234, 255, 0.3)',
+              borderRadius: '6px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
               whiteSpace: 'nowrap',
             }}
           >
             <div style={{
-              color: 'var(--hud-accent)',
-              fontFamily: 'var(--ifm-font-family-monospace)',
-              fontSize: '0.75rem',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
+              color: 'var(--pro-text-light)',
+              fontFamily: 'Inter, system-ui, sans-serif',
+              fontSize: '0.8rem',
             }}>
-              ⚙️ Update Neural Profile
+              Update Profile Settings
             </div>
           </div>
-          {/* Arrow */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '-6px',
-              right: '16px',
-              width: '12px',
-              height: '12px',
-              background: 'var(--hud-bg)',
-              border: '1px solid var(--hud-accent)',
-              borderBottom: 'none',
-              borderRight: 'none',
-              transform: 'rotate(45deg)',
-            }}
-          />
         </div>
       )}
 
       <style>{`
         .settings-gear {
-          transition: transform 0.6s ease;
+          transition: transform 0.4s ease;
         }
-        .cyber-button:hover .settings-gear {
+        .settings-btn:hover {
+          border-color: var(--pro-primary) !important;
+          color: var(--pro-primary) !important;
+        }
+        .settings-btn:hover .settings-gear {
           transform: rotate(90deg);
         }
         @keyframes fadeIn {

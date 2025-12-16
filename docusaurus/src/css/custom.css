@@ -3,185 +3,173 @@
 @tailwind utilities;
 
 /* -------------------------------------------------------------
-   CYBERPUNK HUD THEME - 30Y EXP DESIGNER EDITION
+   PROFESSIONAL MODERN THEME - Clean & Minimal
    ------------------------------------------------------------- */
 
 :root {
-  /* Core Palette */
-  --hud-bg: #0c0f12;           /* Deep Void Black */
-  --hud-panel: #111418;        /* Slightly lighter panel */
-  --hud-primary: #00f7a3;      /* Primary Neon Green */
-  --hud-accent: #00eaff;       /* Accent Cyan */
-  --hud-text-body: #9aa5b1;    /* Muted Grey */
-  --hud-text-soft: #c4fff9;    /* Soft Mint */
-  --hud-alert: #ff003c;        /* Critical Red */
+  /* Core Palette - Professional Blue/Slate */
+  --pro-bg: #0f172a;           /* Deep Slate */
+  --pro-panel: #1e293b;        /* Slate Panel */
+  --pro-primary: #3b82f6;      /* Professional Blue */
+  --pro-accent: #8b5cf6;       /* Violet Accent */
+  --pro-text-body: #94a3b8;    /* Slate Grey */
+  --pro-text-light: #e2e8f0;   /* Light Slate */
+  --pro-alert: #ef4444;        /* Red Alert */
+  --pro-success: #22c55e;      /* Success Green */
+  --pro-border: #334155;       /* Border Color */
 
   /* Fonts */
   --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', monospace;
-  --hud-font-display: 'Orbitron', sans-serif; 
+  --pro-font-display: 'Inter', system-ui, sans-serif;
 
   /* Docusaurus Overrides */
-  --ifm-color-primary: var(--hud-primary);
-  --ifm-color-primary-dark: #00cc85;
-  --ifm-color-primary-darker: #00b374;
-  --ifm-color-primary-darkest: #00935f;
-  --ifm-color-primary-light: #33ffb5;
-  --ifm-color-primary-lighter: #66ffc7;
-  --ifm-color-primary-lightest: #99ffd9;
+  --ifm-color-primary: var(--pro-primary);
+  --ifm-color-primary-dark: #2563eb;
+  --ifm-color-primary-darker: #1d4ed8;
+  --ifm-color-primary-darkest: #1e40af;
+  --ifm-color-primary-light: #60a5fa;
+  --ifm-color-primary-lighter: #93c5fd;
+  --ifm-color-primary-lightest: #bfdbfe;
 
-  --ifm-background-color: var(--hud-bg);
-  --ifm-font-color-base: var(--hud-text-body);
-  --ifm-link-color: var(--hud-accent);
-  --ifm-heading-color: var(--hud-primary);
-  
-  --ifm-navbar-background-color: rgba(12, 15, 18, 0.95);
-  --ifm-navbar-shadow: 0 1px 0 0 rgba(0, 247, 163, 0.15);
-  --ifm-footer-background-color: #050608;
-  
-  --ifm-menu-color: var(--hud-text-body);
-  --ifm-menu-color-active: var(--hud-primary);
-  --ifm-menu-color-background-active: rgba(0, 247, 163, 0.08);
+  --ifm-background-color: var(--pro-bg);
+  --ifm-font-color-base: var(--pro-text-body);
+  --ifm-link-color: var(--pro-primary);
+  --ifm-heading-color: var(--pro-text-light);
+
+  --ifm-navbar-background-color: rgba(15, 23, 42, 0.95);
+  --ifm-navbar-shadow: 0 1px 0 0 var(--pro-border);
+  --ifm-footer-background-color: #020617;
+
+  --ifm-menu-color: var(--pro-text-body);
+  --ifm-menu-color-active: var(--pro-primary);
+  --ifm-menu-color-background-active: rgba(59, 130, 246, 0.1);
+
+  /* Legacy variable mapping for components */
+  --hud-bg: var(--pro-bg);
+  --hud-panel: var(--pro-panel);
+  --hud-primary: var(--pro-primary);
+  --hud-accent: var(--pro-accent);
+  --hud-text-body: var(--pro-text-body);
+  --hud-text-soft: var(--pro-text-light);
+  --hud-alert: var(--pro-alert);
+  --hud-font-display: var(--pro-font-display);
 }
 
 html[data-theme='light'] {
-  --ifm-background-color: var(--hud-bg);
-  --ifm-font-color-base: var(--hud-text-body);
-  --ifm-navbar-background-color: var(--hud-bg);
+  --pro-bg: #f8fafc;
+  --pro-panel: #ffffff;
+  --pro-text-body: #475569;
+  --pro-text-light: #1e293b;
+  --pro-border: #e2e8f0;
+  --ifm-background-color: var(--pro-bg);
+  --ifm-font-color-base: var(--pro-text-body);
+  --ifm-navbar-background-color: rgba(248, 250, 252, 0.95);
 }
 
 /* -------------------------------------------------------------
-   TYPOGRAPHY - HUD STANDARD
+   TYPOGRAPHY - PROFESSIONAL CLEAN
    ------------------------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--hud-font-display);
-  color: var(--hud-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--pro-font-display);
+  color: var(--pro-text-light);
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
 h1 {
   font-size: 2.5rem;
-  font-weight: 900;
-  text-shadow: 0 0 15px rgba(0, 247, 163, 0.4);
-  border-bottom: 1px solid rgba(0, 247, 163, 0.3);
-  padding-bottom: 0.5rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--pro-border);
+  padding-bottom: 0.75rem;
 }
 
 h2 {
   font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--hud-text-soft);
+  font-weight: 600;
+  color: var(--pro-text-light);
 }
 
 h3 {
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--hud-accent);
+  color: var(--pro-primary);
 }
 
 p {
-  color: var(--hud-text-body);
+  color: var(--pro-text-body);
   line-height: 1.75;
   font-size: 1.05rem;
   margin-bottom: 1.5rem;
 }
 
 /* -------------------------------------------------------------
-   CYBER COMPONENTS (REUSABLE)
+   PROFESSIONAL COMPONENTS (REUSABLE)
    ------------------------------------------------------------- */
 
-/* 1. Cyber Modal Backdrop & Container */
+/* 1. Modal Backdrop & Container */
 .cyber-modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(12px);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  background-image: 
-    linear-gradient(rgba(0, 247, 163, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 247, 163, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
 }
 
 .cyber-card {
-  background: var(--hud-bg);
-  border: 1px solid var(--hud-primary);
-  box-shadow: 0 0 30px rgba(0, 247, 163, 0.15), inset 0 0 20px rgba(0, 247, 163, 0.05);
-  border-radius: 2px; /* Sharper corners */
+  background: var(--pro-panel);
+  border: 1px solid var(--pro-border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
   position: relative;
   overflow: hidden;
 }
 
-/* 2. Scanline Effect */
+/* 2. Scanline Effect - Hidden in professional theme */
 .scanline-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent 50%, rgba(0, 247, 163, 0.02) 50%);
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 10;
+  display: none;
 }
 
-/* Scanline animation for buttons */
-@keyframes scan-horizontal {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 200%;
-  }
-}
-
-/* 3. Cyber Input Fields */
+/* 3. Input Fields */
 .cyber-input {
   width: 100%;
-  background-color: rgba(17, 20, 24, 0.8);
-  border: 1px solid var(--hud-text-body);
-  color: var(--hud-text-soft);
-  font-family: var(--ifm-font-family-monospace);
+  background-color: var(--pro-bg);
+  border: 1px solid var(--pro-border);
+  color: var(--pro-text-light);
+  font-family: var(--ifm-font-family-base);
   padding: 12px 16px;
-  border-radius: 2px;
-  transition: all 0.3s ease;
+  border-radius: 8px;
+  transition: all 0.2s ease;
   outline: none;
 }
 
 .cyber-input:focus {
-  border-color: var(--hud-accent);
-  box-shadow: 0 0 15px rgba(0, 234, 255, 0.2);
-  background-color: rgba(0, 234, 255, 0.05);
-  animation: focus-pulse 1.5s infinite;
+  border-color: var(--pro-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background-color: var(--pro-bg);
 }
 
 .cyber-input::placeholder {
-  color: rgba(154, 165, 177, 0.5);
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
+  color: var(--pro-text-body);
+  font-size: 0.9rem;
 }
 
-/* 4. Cyber Buttons (Primary & Secondary) */
+/* 4. Buttons (Primary & Secondary) */
 .cyber-button {
   position: relative;
-  background: rgba(0, 247, 163, 0.05);
-  border: 1px solid var(--hud-primary);
-  color: var(--hud-primary);
-  font-family: var(--hud-font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  background: var(--pro-primary);
+  border: none;
+  color: white;
+  font-family: var(--pro-font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
   padding: 10px 24px;
-  transition: all 0.3s ease;
-  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  border-radius: 8px;
+  transition: all 0.2s ease;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -189,134 +177,78 @@ p {
 }
 
 .cyber-button:hover:not(:disabled) {
-  background: var(--hud-primary);
-  color: var(--hud-bg);
-  box-shadow: 0 0 25px rgba(0, 247, 163, 0.4);
-  text-shadow: none;
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .cyber-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  border-color: var(--hud-text-body);
-  color: var(--hud-text-body);
 }
 
 .cyber-button.secondary {
-  border-color: var(--hud-accent);
-  color: var(--hud-accent);
-  background: rgba(0, 234, 255, 0.05);
+  background: transparent;
+  border: 1px solid var(--pro-border);
+  color: var(--pro-text-light);
 }
 
 .cyber-button.secondary:hover {
-  background: var(--hud-accent);
-  color: var(--hud-bg);
-  box-shadow: 0 0 25px rgba(0, 234, 255, 0.4);
+  background: var(--pro-panel);
+  border-color: var(--pro-primary);
+  color: var(--pro-primary);
+  box-shadow: none;
 }
 
 .cyber-button.offline {
-  border-color: var(--hud-alert);
-  color: var(--hud-alert);
-  background: rgba(255, 0, 60, 0.05);
+  background: transparent;
+  border: 1px solid var(--pro-border);
+  color: var(--pro-text-body);
 }
 
 .cyber-button.offline:hover {
-  background: var(--hud-alert);
+  background: var(--pro-primary);
+  border-color: var(--pro-primary);
   color: white;
-  box-shadow: 0 0 25px rgba(255, 0, 60, 0.4);
 }
 
-/* 5. Glitch Text Animation */
+/* 5. Glitch Text - Removed for professional look */
 .glitch-text {
   position: relative;
-}
-
-.glitch-text:hover {
-  animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
-}
-
-@keyframes glitch {
-  0% { transform: translate(0) }
-  20% { transform: translate(-2px, 2px) }
-  40% { transform: translate(-2px, -2px) }
-  60% { transform: translate(2px, 2px) }
-  80% { transform: translate(2px, -2px) }
-  100% { transform: translate(0) }
 }
 
 /* 6. Tabs (Login/Signup) */
 .cyber-tabs {
   display: flex;
-  border-bottom: 1px solid rgba(154, 165, 177, 0.2);
+  border-bottom: 1px solid var(--pro-border);
   margin-bottom: 20px;
 }
 
 .cyber-tab {
   flex: 1;
   text-align: center;
-  padding: 10px;
+  padding: 12px;
   cursor: pointer;
-  font-family: var(--hud-font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--pro-font-display);
+  font-weight: 500;
   font-size: 0.9rem;
-  color: var(--hud-text-body);
-  transition: all 0.3s ease;
+  color: var(--pro-text-body);
+  transition: all 0.2s ease;
   border-bottom: 2px solid transparent;
 }
 
 .cyber-tab:hover {
-  color: var(--hud-text-soft);
+  color: var(--pro-text-light);
 }
 
 .cyber-tab.active {
-  color: var(--hud-primary);
-  border-bottom-color: var(--hud-primary);
-  text-shadow: 0 0 8px rgba(0, 247, 163, 0.4);
-  background: linear-gradient(to top, rgba(0, 247, 163, 0.05), transparent);
+  color: var(--pro-primary);
+  border-bottom-color: var(--pro-primary);
+  background: linear-gradient(to top, rgba(59, 130, 246, 0.05), transparent);
 }
 
-/* 7. Motion Graphics & Animations (New) */
-
-@keyframes scan-move {
-  0% { top: 0%; opacity: 0; }
-  5% { opacity: 1; }
-  95% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
-}
-
-.scanline-moving {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--hud-primary);
-  box-shadow: 0 0 10px var(--hud-primary);
-  opacity: 0.5;
-  animation: scan-move 3s linear infinite;
-  pointer-events: none;
-  z-index: 15;
-}
-
-@keyframes hologram-flicker {
-  0% { opacity: 0.98; }
-  5% { opacity: 0.95; }
-  10% { opacity: 0.98; }
-  15% { opacity: 0.90; }
-  20% { opacity: 0.98; }
-  50% { opacity: 0.98; }
-  55% { opacity: 0.92; }
-  60% { opacity: 0.98; }
-  100% { opacity: 0.98; }
-}
-
-/* Apply subtle flicker to cards */
-.cyber-card {
-  animation: hologram-flicker 6s infinite;
-}
-
-@keyframes focus-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(0, 247, 163, 0.2); border-color: var(--hud-accent); }
-  50% { box-shadow: 0 0 10px 0 rgba(0, 247, 163, 0.1); border-color: var(--hud-primary); }
-  100% { box-shadow: 0 0 0 0 rgba(0, 247, 163, 0.2); border-color: var(--hud-accent); }
+/* 7. Navbar AI Buttons */
+.navbar-ai-btn:hover:not(:disabled):not(.active-primary):not(.active-accent) {
+  border-color: var(--pro-primary) !important;
+  color: var(--pro-primary) !important;
 }

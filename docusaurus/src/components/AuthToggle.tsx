@@ -127,8 +127,18 @@ const AuthToggle = () => {
 
   if (isPending)
     return (
-      <button className="cyber-button">
-        <span className="animate-pulse">INITIALIZING...</span>
+      <button style={{
+        padding: '8px 16px',
+        background: 'var(--pro-primary)',
+        border: 'none',
+        borderRadius: '6px',
+        color: '#fff',
+        fontSize: '0.8rem',
+        fontWeight: '500',
+        fontFamily: 'Inter, system-ui, sans-serif',
+        marginLeft: '15px',
+      }}>
+        <span style={{ opacity: 0.7 }}>Loading...</span>
       </button>
     );
 
@@ -136,237 +146,380 @@ const AuthToggle = () => {
     <>
       {/* NAVBAR TOGGLE BUTTON */}
       <button
-        className={`cyber-button ${session ? "" : "offline"}`}
         onClick={() => (session ? handleLogout() : setShowModal(true))}
-        title={session ? "Sever Neural Link" : "Establish Neural Link"}
-        style={{ marginLeft: "15px" }}
+        title={session ? "Sign Out" : "Sign In"}
+        className={`auth-btn ${session ? 'signed-in' : 'signed-out'}`}
+        style={{
+          marginLeft: '15px',
+          padding: '8px 16px',
+          background: session ? 'transparent' : 'var(--pro-primary)',
+          border: session ? '1px solid var(--pro-border)' : 'none',
+          borderRadius: '6px',
+          color: session ? 'var(--pro-text-body)' : '#fff',
+          fontSize: '0.8rem',
+          fontWeight: '500',
+          fontFamily: 'Inter, system-ui, sans-serif',
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
+        }}
       >
-        <span className="cyber-indicator" />
-        {session ? "NEURAL LINK: ACTIVE" : "SYSTEM: OFFLINE"}
+        {session ? "Sign Out" : "Sign In"}
       </button>
 
       {/* AUTH MODAL */}
       {showModal && !session && (
         <div
-          className="cyber-modal-backdrop"
+          className="auth-modal-backdrop"
           onClick={() => setShowModal(false)}
         >
-          <div className="min-h-screen flex items-center justify-center px-4 py-12">
-            <div
-              className="w-full max-w-2xl bg-[#0a0f14]/90 border border-[#00f7a3] rounded-xl shadow-[0_0_25px_#00f7a3] backdrop-blur relative"
-              onClick={(e) => e.stopPropagation()}
-              style={{ maxWidth: "650px" }}
+          <div
+            className="auth-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowModal(false)}
+              className="auth-modal-close"
+              title="Close"
             >
-              {/* Scanline Overlay */}
-              <div className="scanline-overlay"></div>
+              ×
+            </button>
 
-              {/* Close Button */}
-              <button
-                onClick={() => setShowModal(false)}
-                className="absolute top-5 right-5 text-[#9aa5b1] hover:text-[#ff003c] font-mono text-3xl z-20 transition-colors leading-none w-10 h-10 flex items-center justify-center rounded hover:bg-[#ff003c]/10"
-                title="Close"
+            {/* Header */}
+            <div className="auth-modal-header">
+              <div className="auth-modal-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--pro-primary)" strokeWidth="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <h2 className="auth-modal-title">Welcome Back</h2>
+              <p className="auth-modal-subtitle">Sign in to access your account</p>
+            </div>
+
+            {/* Tabs */}
+            <div className="auth-tabs">
+              <div
+                onClick={() => setView("login")}
+                className={`auth-tab ${view === 'login' ? 'active' : ''}`}
               >
-                ×
-              </button>
-
-              {/* Header */}
-              <div className="text-center px-8 pt-10 pb-8 border-b border-[#00f7a3]/20">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-[#00f7a3] bg-[#00f7a3]/5 mb-5">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f7a3" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </div>
-                <h2
-                  className="text-3xl glitch-text"
-                  style={{
-                    color: "var(--hud-primary)",
-                    fontFamily: 'var(--hud-font-display)',
-                    textShadow: "0 0 15px rgba(0,247,163,0.5)"
-                  }}
-                >
-                  IDENTITY VERIFICATION
-                </h2>
-                <p className="text-sm font-mono text-[#9aa5b1] tracking-[0.15em] uppercase mt-3">
-                  Secure Neural Link Protocol
-                </p>
+                Sign In
               </div>
-
-              {/* Tabs */}
-              <div className="cyber-tabs">
-                <div
-                  className={`cyber-tab ${view === "login" ? "active" : ""}`}
-                  onClick={() => setView("login")}
-                >
-                  LOGIN
-                </div>
-                <div
-                  className={`cyber-tab ${view === "signup" ? "active" : ""}`}
-                  onClick={() => setView("signup")}
-                >
-                  REGISTER
-                </div>
+              <div
+                onClick={() => setView("signup")}
+                className={`auth-tab ${view === 'signup' ? 'active' : ''}`}
+              >
+                Register
               </div>
+            </div>
 
-              {/* Error Message */}
-              {error && (
-                <div className="mx-10 mt-6 p-4 border-2 border-[#ff003c] bg-[#ff003c]/10 text-[#ff003c] text-sm font-mono flex items-center rounded">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="mr-3">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                  </svg>
-                  <span>ERROR: {error}</span>
+            {/* Error Message */}
+            {error && (
+              <div className="auth-error">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>{error}</span>
+              </div>
+            )}
+
+            {/* Form */}
+            <div className="auth-form">
+              {view === "signup" && (
+                <div className="auth-field">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="auth-input"
+                    required
+                  />
                 </div>
               )}
 
-              {/* Form */}
-              <div className="px-10 py-8 space-y-8 relative z-10">
-                {view === "signup" && (
-                  <div className="space-y-3">
-                    <label className="text-sm font-mono text-[#9aa5b1] tracking-[0.12em] flex items-center gap-2">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                      </svg>
-                      OPERATOR ALIAS
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="ENTER DISPLAY NAME"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="cyber-input"
-                      style={{ padding: '14px 16px', fontSize: '15px' }}
-                      required
-                    />
-                  </div>
+              <div className="auth-field">
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="auth-input"
+                  required
+                />
+              </div>
+
+              <div className="auth-field">
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="auth-input"
+                  required
+                />
+              </div>
+
+              <button
+                onClick={handleEmailAuth}
+                disabled={loading}
+                className="auth-submit-btn"
+              >
+                {loading ? (
+                  <>
+                    <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+                    </svg>
+                    Processing...
+                  </>
+                ) : view === "login" ? (
+                  "Sign In"
+                ) : (
+                  "Create Account"
                 )}
+              </button>
+            </div>
 
-                <div className="space-y-3">
-                  <label className="text-sm font-mono text-[#9aa5b1] tracking-[0.12em] flex items-center gap-2">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                      <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    EMAIL FREQUENCY
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="NAME@DOMAIN.COM"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="cyber-input"
-                    style={{ padding: '14px 16px', fontSize: '15px' }}
-                    required
-                  />
-                </div>
+            {/* Divider */}
+            <div className="auth-divider">
+              <div className="auth-divider-line"></div>
+              <span>or continue with</span>
+              <div className="auth-divider-line"></div>
+            </div>
 
-                <div className="space-y-3">
-                  <label className="text-sm font-mono text-[#9aa5b1] tracking-[0.12em] flex items-center gap-2">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                    ACCESS CODE
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="cyber-input"
-                    style={{ padding: '14px 16px', fontSize: '15px' }}
-                    required
-                  />
-                </div>
-
-                <button
-                  onClick={handleEmailAuth}
-                  disabled={loading}
-                  className="cyber-button w-full mt-6"
-                  style={{
-                    padding: '16px 32px',
-                    fontSize: '15px',
-                    background: loading
-                      ? 'rgba(0, 247, 163, 0.15)'
-                      : 'linear-gradient(135deg, rgba(0, 247, 163, 0.08), rgba(0, 234, 255, 0.08))',
-                    boxShadow: '0 0 20px rgba(0,247,163,0.3)'
-                  }}
-                >
-                  {loading ? (
-                    <span className="flex items-center animate-pulse justify-center gap-2">
-                      <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
-                      </svg>
-                      PROCESSING...
-                    </span>
-                  ) : view === "login" ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13.8 12H3"/>
-                      </svg>
-                      AUTHENTICATE
-                    </span>
-                  ) : (
-                    <span className="flex items-center justify-center gap-2">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M12.5 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6"/>
-                      </svg>
-                      INITIALIZE PROTOCOL
-                    </span>
-                  )}
-                </button>
-              </div>
-
-              {/* Divider */}
-              <div className="relative flex py-2 items-center z-10 px-10">
-                <div className="flex-grow border-t border-[#9aa5b1]/20"></div>
-                <span className="flex-shrink mx-5 text-[#9aa5b1]/50 text-xs font-mono uppercase tracking-[0.2em]">
-                  OR EXTERNAL UPLINK
-                </span>
-                <div className="flex-grow border-t border-[#9aa5b1]/20"></div>
-              </div>
-
-              {/* Social Buttons */}
-              <div className="space-y-4 relative z-10 px-10 pb-10">
-                <button
-                  type="button"
-                  onClick={handleGitHubLogin}
-                  className="cyber-button secondary w-full"
-                  style={{
-                    padding: '14px 24px',
-                    fontSize: '14px',
-                    justifyContent: 'center',
-                    gap: '12px'
-                  }}
-                >
-                  <span className="w-5 h-5 flex-shrink-0">
-                    <GitHubIcon />
-                  </span>
-                  <span className="tracking-wider">Continue with GitHub</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleGoogleLogin}
-                  className="cyber-button secondary w-full"
-                  style={{
-                    padding: '14px 24px',
-                    fontSize: '14px',
-                    justifyContent: 'center',
-                    gap: '12px'
-                  }}
-                >
-                  <span className="w-5 h-5 flex-shrink-0">
-                    <GoogleIcon />
-                  </span>
-                  <span className="tracking-wider">Continue with Google</span>
-                </button>
-              </div>
+            {/* Social Buttons */}
+            <div className="auth-social">
+              <button type="button" onClick={handleGitHubLogin} className="auth-social-btn">
+                <GitHubIcon />
+                <span>Continue with GitHub</span>
+              </button>
+              <button type="button" onClick={handleGoogleLogin} className="auth-social-btn">
+                <GoogleIcon />
+                <span>Continue with Google</span>
+              </button>
             </div>
           </div>
         </div>
       )}
+
+      <style>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin {
+          animation: spin 1s linear infinite;
+        }
+        .auth-btn.signed-in:hover {
+          border-color: var(--pro-primary) !important;
+          color: var(--pro-primary) !important;
+        }
+        .auth-btn.signed-out:hover {
+          background: #2563eb !important;
+        }
+        .auth-modal-backdrop {
+          position: fixed;
+          inset: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          backdrop-filter: blur(8px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          padding: 1rem;
+        }
+        .auth-modal {
+          width: 100%;
+          max-width: 420px;
+          background: var(--pro-panel);
+          border: 1px solid var(--pro-border);
+          border-radius: 16px;
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+          position: relative;
+          overflow: hidden;
+        }
+        .auth-modal-close {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+          border: none;
+          border-radius: 50%;
+          color: var(--pro-text-body);
+          font-size: 1.5rem;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          z-index: 20;
+        }
+        .auth-modal-close:hover {
+          background: var(--pro-border);
+          color: var(--pro-text-light);
+        }
+        .auth-modal-header {
+          text-align: center;
+          padding: 2rem 2rem 1.5rem;
+          border-bottom: 1px solid var(--pro-border);
+        }
+        .auth-modal-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: rgba(59, 130, 246, 0.1);
+          margin-bottom: 1rem;
+        }
+        .auth-modal-title {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: var(--pro-text-light);
+          font-family: Inter, system-ui, sans-serif;
+          margin: 0;
+        }
+        .auth-modal-subtitle {
+          font-size: 0.9rem;
+          color: var(--pro-text-body);
+          margin-top: 0.5rem;
+        }
+        .auth-tabs {
+          display: flex;
+          border-bottom: 1px solid var(--pro-border);
+        }
+        .auth-tab {
+          flex: 1;
+          text-align: center;
+          padding: 12px;
+          cursor: pointer;
+          font-family: Inter, system-ui, sans-serif;
+          font-weight: 500;
+          font-size: 0.9rem;
+          color: var(--pro-text-body);
+          border-bottom: 2px solid transparent;
+          transition: all 0.2s ease;
+        }
+        .auth-tab.active {
+          color: var(--pro-primary);
+          border-bottom-color: var(--pro-primary);
+        }
+        .auth-error {
+          margin: 1rem 1.5rem 0;
+          padding: 12px;
+          border: 1px solid rgba(239, 68, 68, 0.3);
+          background: rgba(239, 68, 68, 0.1);
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--pro-alert);
+          font-size: 0.85rem;
+        }
+        .auth-form {
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .auth-field label {
+          display: block;
+          font-size: 0.85rem;
+          color: var(--pro-text-body);
+          font-weight: 500;
+          margin-bottom: 6px;
+        }
+        .auth-input {
+          width: 100%;
+          padding: 12px 14px;
+          background: var(--pro-bg);
+          border: 1px solid var(--pro-border);
+          border-radius: 8px;
+          color: var(--pro-text-light);
+          font-size: 0.9rem;
+          font-family: Inter, system-ui, sans-serif;
+          outline: none;
+          transition: border-color 0.2s ease;
+        }
+        .auth-input:focus {
+          border-color: var(--pro-primary);
+        }
+        .auth-submit-btn {
+          width: 100%;
+          padding: 12px 24px;
+          background: var(--pro-primary);
+          border: none;
+          border-radius: 8px;
+          color: #fff;
+          font-size: 0.95rem;
+          font-weight: 600;
+          font-family: Inter, system-ui, sans-serif;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          transition: all 0.2s ease;
+        }
+        .auth-submit-btn:hover:not(:disabled) {
+          background: #2563eb;
+        }
+        .auth-submit-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+        .auth-divider {
+          display: flex;
+          align-items: center;
+          padding: 0 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .auth-divider-line {
+          flex: 1;
+          height: 1px;
+          background: var(--pro-border);
+        }
+        .auth-divider span {
+          padding: 0 1rem;
+          font-size: 0.8rem;
+          color: var(--pro-text-body);
+        }
+        .auth-social {
+          padding: 0 1.5rem 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .auth-social-btn {
+          width: 100%;
+          padding: 10px 20px;
+          background: transparent;
+          border: 1px solid var(--pro-border);
+          border-radius: 8px;
+          color: var(--pro-text-light);
+          font-size: 0.9rem;
+          font-weight: 500;
+          font-family: Inter, system-ui, sans-serif;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: all 0.2s ease;
+        }
+        .auth-social-btn:hover {
+          border-color: var(--pro-primary);
+          color: var(--pro-primary);
+        }
+      `}</style>
     </>
   );
 };

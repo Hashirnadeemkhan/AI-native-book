@@ -10,18 +10,18 @@ function markdownToHtml(markdown: string): string {
   let html = markdown;
 
   // Headers
-  html = html.replace(/^### (.*$)/gim, '<h3 style="color: var(--hud-accent); font-size: 1.2rem; margin: 1.5rem 0 0.75rem 0; font-weight: 600;">$1</h3>');
-  html = html.replace(/^## (.*$)/gim, '<h2 style="color: var(--hud-primary); font-size: 1.4rem; margin: 1.5rem 0 0.75rem 0; font-weight: 700;">$1</h2>');
-  html = html.replace(/^# (.*$)/gim, '<h1 style="color: var(--hud-primary); font-size: 1.6rem; margin: 1.5rem 0 0.75rem 0; font-weight: 800;">$1</h1>');
+  html = html.replace(/^### (.*$)/gim, '<h3 style="color: var(--pro-accent); font-size: 1.2rem; margin: 1.5rem 0 0.75rem 0; font-weight: 600;">$1</h3>');
+  html = html.replace(/^## (.*$)/gim, '<h2 style="color: var(--pro-primary); font-size: 1.4rem; margin: 1.5rem 0 0.75rem 0; font-weight: 700;">$1</h2>');
+  html = html.replace(/^# (.*$)/gim, '<h1 style="color: var(--pro-text-light); font-size: 1.6rem; margin: 1.5rem 0 0.75rem 0; font-weight: 700;">$1</h1>');
 
   // Bold
-  html = html.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--hud-primary); font-weight: 700;">$1</strong>');
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--pro-text-light); font-weight: 600;">$1</strong>');
 
   // Italic
-  html = html.replace(/\*(.*?)\*/g, '<em style="color: var(--hud-text-soft);">$1</em>');
+  html = html.replace(/\*(.*?)\*/g, '<em style="color: var(--pro-text-body);">$1</em>');
 
   // Code blocks
-  html = html.replace(/`([^`]+)`/g, '<code style="background: rgba(0,247,163,0.1); padding: 2px 6px; border-radius: 3px; font-family: var(--ifm-font-family-monospace); color: var(--hud-accent); font-size: 0.9em;">$1</code>');
+  html = html.replace(/`([^`]+)`/g, '<code style="background: rgba(59,130,246,0.1); padding: 2px 6px; border-radius: 4px; font-family: var(--ifm-font-family-monospace); color: var(--pro-primary); font-size: 0.9em;">$1</code>');
 
   // Line breaks
   html = html.replace(/\n\n/g, '</p><p style="margin: 1rem 0; line-height: 1.75;">');
@@ -40,7 +40,7 @@ export default function NeuralPersonalizeButton({ contentSelector = '.markdown' 
 
   const handlePersonalize = async () => {
     if (!session) {
-      alert("⚠️ SECURITY CLEARANCE REQUIRED. PLEASE LOG IN.");
+      alert("Please sign in to personalize content.");
       return;
     }
 
@@ -70,22 +70,66 @@ export default function NeuralPersonalizeButton({ contentSelector = '.markdown' 
           const renderedContent = markdownToHtml(data.output);
 
           const personalizedHtml = `
-            <div class="cyber-card p-6 my-8" style="box-shadow: 0 0 30px rgba(0, 247, 163, 0.2), inset 0 0 20px rgba(0, 247, 163, 0.05);">
-                <div class="scanline-overlay"></div>
-                <div style="position: relative; z-index: 1;">
-                  <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--hud-primary); padding-bottom: 12px; margin-bottom: 16px;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--hud-primary)" stroke-width="2">
+            <div class="personalized-content-card">
+                <div class="personalized-header">
+                  <div class="personalized-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pro-primary)" stroke-width="2">
                       <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
-                    <h3 style="color: var(--hud-primary); font-family: var(--hud-font-display); font-size: 1.1rem; margin: 0; text-transform: uppercase; letter-spacing: 0.1em; text-shadow: 0 0 10px rgba(0,247,163,0.3);">
-                      ⚡ PERSONALIZED FOR YOUR LEVEL
-                    </h3>
                   </div>
-                  <div style="color: var(--hud-text-soft); line-height: 1.75; font-size: 1.05rem;">
-                      ${renderedContent}
+                  <div>
+                    <h3 class="personalized-title">Personalized for Your Level</h3>
+                    <p class="personalized-subtitle">AI-adapted content based on your profile</p>
                   </div>
                 </div>
+                <div class="personalized-body">
+                    ${renderedContent}
+                </div>
             </div>
+            <style>
+              .personalized-content-card {
+                background: var(--pro-panel);
+                border: 1px solid var(--pro-border);
+                border-radius: 12px;
+                padding: 1.5rem;
+                margin: 2rem 0;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+              }
+              .personalized-header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                border-bottom: 1px solid var(--pro-border);
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+              }
+              .personalized-icon {
+                width: 40px;
+                height: 40px;
+                background: rgba(59, 130, 246, 0.1);
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              .personalized-title {
+                color: var(--pro-text-light);
+                font-family: Inter, system-ui, sans-serif;
+                font-size: 1rem;
+                margin: 0;
+                font-weight: 600;
+              }
+              .personalized-subtitle {
+                color: var(--pro-text-body);
+                font-size: 0.8rem;
+                margin: 0;
+              }
+              .personalized-body {
+                color: var(--pro-text-body);
+                line-height: 1.75;
+                font-size: 1rem;
+              }
+            </style>
           `;
 
           contentElement.insertAdjacentHTML('afterbegin', personalizedHtml);
@@ -93,7 +137,7 @@ export default function NeuralPersonalizeButton({ contentSelector = '.markdown' 
       }
     } catch (e) {
         console.error(e);
-        alert("❌ NEURAL LINK ERROR. Please try again.");
+        alert("Failed to personalize content. Please try again.");
     } finally {
         setLoading(false);
     }
@@ -101,97 +145,96 @@ export default function NeuralPersonalizeButton({ contentSelector = '.markdown' 
 
   if (personalized) {
     return (
-      <div className="my-6 p-4 border border-green-500/30 bg-green-500/5 rounded" style={{
-        boxShadow: '0 0 15px rgba(0,247,163,0.1)'
-      }}>
-        <div className="flex items-center gap-3">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hud-primary)" strokeWidth="2.5">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          <span style={{
-            color: 'var(--hud-primary)',
-            fontFamily: 'var(--hud-font-display)',
-            fontSize: '0.9rem',
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase'
-          }}>
-            Content Optimized for Your System
-          </span>
-        </div>
+      <div className="personalize-success">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pro-success)" strokeWidth="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>Content personalized for your level</span>
+        <style>{`
+          .personalize-success {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--pro-success);
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+          }
+        `}</style>
       </div>
     );
   }
 
   return (
-    <div className="my-8" style={{ position: 'relative' }}>
-      <div style={{
-        position: 'absolute',
-        top: '-2px',
-        left: '-2px',
-        right: '-2px',
-        bottom: '-2px',
-        background: 'linear-gradient(45deg, var(--hud-primary), var(--hud-accent))',
-        opacity: loading ? '0.3' : '0',
-        filter: 'blur(8px)',
-        transition: 'opacity 0.3s ease',
-        pointerEvents: 'none',
-        animation: loading ? 'pulse 2s infinite' : 'none'
-      }}></div>
-
+    <div className="personalize-container">
       <button
         onClick={handlePersonalize}
         disabled={loading}
-        className="cyber-button"
-        style={{
-          width: '100%',
-          padding: '20px 32px',
-          fontSize: '1rem',
-          gap: '12px',
-          position: 'relative',
-          overflow: 'hidden',
-          background: loading
-            ? 'rgba(0, 247, 163, 0.15)'
-            : 'linear-gradient(135deg, rgba(0, 247, 163, 0.08), rgba(0, 234, 255, 0.08))',
-          borderWidth: '2px',
-          boxShadow: loading
-            ? '0 0 30px rgba(0,247,163,0.3), inset 0 0 20px rgba(0,247,163,0.1)'
-            : '0 0 20px rgba(0,247,163,0.2)',
-        }}
+        className={`personalize-btn ${loading ? 'loading' : ''}`}
       >
         {loading ? (
           <>
-            <svg className="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg className="personalize-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
             </svg>
-            <span style={{ letterSpacing: '0.15em' }}>PROCESSING NEURAL DATA...</span>
+            <span>Personalizing...</span>
           </>
         ) : (
           <>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
-            <span style={{ letterSpacing: '0.15em' }}>⚡ PERSONALIZE CONTENT</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <span>Personalize Content</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14m-7-7l7 7-7 7"/>
             </svg>
           </>
         )}
-
-        {/* Scanline effect */}
-        {!loading && (
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: '-100%',
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(90deg, transparent, rgba(0,247,163,0.3), transparent)',
-            animation: 'scan-horizontal 3s infinite',
-            pointerEvents: 'none'
-          }}></div>
-        )}
       </button>
+      <style>{`
+        .personalize-container {
+          margin: 2rem 0;
+        }
+        .personalize-btn {
+          width: 100%;
+          padding: 14px 24px;
+          font-size: 0.95rem;
+          background: var(--pro-primary);
+          border: none;
+          border-radius: 10px;
+          color: #ffffff;
+          font-weight: 600;
+          font-family: Inter, system-ui, sans-serif;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        .personalize-btn:hover:not(:disabled) {
+          background: #2563eb;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        .personalize-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .personalize-spinner {
+          animation: spin 1s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }

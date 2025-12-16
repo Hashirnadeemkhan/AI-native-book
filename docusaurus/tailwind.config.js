@@ -8,11 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'cb-background': '#0c0f12',
-        'cb-neon-green': '#00f7a3',
-        'cb-cyan-accent': '#00eaff',
-        'cb-soft-mint': '#c4fff9',
-        'cb-muted-grey': '#9aa5b1',
+        'pro-bg': '#0f172a',
+        'pro-panel': '#1e293b',
+        'pro-primary': '#3b82f6',
+        'pro-accent': '#8b5cf6',
+        'pro-text': '#94a3b8',
+        'pro-text-light': '#e2e8f0',
+        'pro-border': '#334155',
+        'pro-alert': '#ef4444',
+        'pro-success': '#22c55e',
       },
     },
   },
