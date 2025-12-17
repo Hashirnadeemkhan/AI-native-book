@@ -18,7 +18,7 @@ provider = AsyncOpenAI(
 # Initialize the Model
 model = OpenAIChatCompletionsModel(
     openai_client=provider,
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
 )
 
 def load_skill_instructions(skill_name: str) -> str:

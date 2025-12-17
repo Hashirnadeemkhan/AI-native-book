@@ -51,7 +51,7 @@ export default function HardwareInput({ value, onChange }: HardwareInputProps) {
 
   return (
     <div ref={wrapperRef}>
-      <label className="block text-[#9aa5b1] text-sm font-mono tracking-[0.15em] mb-5 hover:text-[#00f7a3] transition-colors duration-300 flex items-center gap-2">
+      <label className="block text-[#94a3b8] text-sm font-mono tracking-[0.15em] mb-5 hover:text-[#3b82f6] transition-colors duration-300 flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
           <line x1="8" y1="21" x2="16" y2="21"></line>
@@ -62,10 +62,10 @@ export default function HardwareInput({ value, onChange }: HardwareInputProps) {
 
       {/* INPUT + ARROW */}
       <div
-        className="flex items-center w-full bg-[#0a0f14]/60 border-2 border-[#9aa5b1]/30
+        className="flex items-center w-full bg-[#1e293b]/60 border-2 border-[#94a3b8]/30
                    rounded px-6 py-5 cursor-text group
-                   focus-within:border-[#00eaff] focus-within:bg-[#0a0f14]
-                   focus-within:shadow-[0_0_25px_rgba(0,234,255,0.2)]
+                   focus-within:border-[#8b5cf6] focus-within:bg-[#1e293b]
+                   focus-within:shadow-[0_0_25px_rgba(139,92,246,0.2)]
                    transition-all duration-300"
         onClick={() => setIsOpen(true)}
       >
@@ -78,7 +78,7 @@ export default function HardwareInput({ value, onChange }: HardwareInputProps) {
           }}
           onFocus={() => setIsOpen(true)}
           placeholder="SELECT UNIT (e.g. JETSON ORIN)"
-          className="flex-1 bg-transparent text-[#c4fff9] font-mono text-base placeholder-[#9aa5b1]/40
+          className="flex-1 bg-transparent text-[#e2e8f0] font-mono text-base placeholder-[#94a3b8]/40
                      focus:outline-none"
           style={{ letterSpacing: '0.02em' }}
         />
@@ -88,8 +88,8 @@ export default function HardwareInput({ value, onChange }: HardwareInputProps) {
             e.stopPropagation();
             setIsOpen(!isOpen);
           }}
-          className={`ml-4 text-[#00f7a3] cursor-pointer transition-transform duration-300
-                      hover:text-[#00eaff] ${isOpen ? "rotate-180" : "rotate-0"}`}
+          className={`ml-4 text-[#3b82f6] cursor-pointer transition-transform duration-300
+                      hover:text-[#8b5cf6] ${isOpen ? "rotate-180" : "rotate-0"}`}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="6 9 12 15 18 9"></polyline>
@@ -100,18 +100,18 @@ export default function HardwareInput({ value, onChange }: HardwareInputProps) {
       {/* DROPDOWN */}
       {isOpen && (
         <ul
-          className="w-full mt-3 bg-[#0a0f14] border-2 border-[#00eaff] rounded
-                     shadow-[0_0_30px_rgba(0,234,255,0.2)] max-h-64 overflow-y-auto
-                     scrollbar-thin scrollbar-thumb-[#00eaff] scrollbar-track-[#0c0f12]"
+          className="w-full mt-3 bg-[#1e293b] border-2 border-[#8b5cf6] rounded
+                     shadow-[0_0_30px_rgba(139,92,246,0.2)] max-h-64 overflow-y-auto
+                     scrollbar-thin scrollbar-thumb-[#8b5cf6] scrollbar-track-[#0c0f12]"
         >
           {filteredSuggestions.length > 0 ? (
             filteredSuggestions.map((item) => (
               <li
                 key={item}
                 onClick={() => handleSelect(item)}
-                className="px-6 py-4 text-base font-mono text-[#9aa5b1] cursor-pointer
-                           border-b border-[#9aa5b1]/10 last:border-0
-                           hover:bg-[#00eaff]/10 hover:text-[#00eaff] hover:pl-8
+                className="px-6 py-4 text-base font-mono text-[#94a3b8] cursor-pointer
+                           border-b border-[#94a3b8]/10 last:border-0
+                           hover:bg-[#8b5cf6]/10 hover:text-[#8b5cf6] hover:pl-8
                            transition-all duration-200 flex items-center gap-3"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-50">
@@ -122,7 +122,7 @@ export default function HardwareInput({ value, onChange }: HardwareInputProps) {
               </li>
             ))
           ) : (
-            <li className="px-6 py-4 text-sm font-mono text-[#9aa5b1]/40 italic flex items-center gap-2">
+            <li className="px-6 py-4 text-sm font-mono text-[#94a3b8]/40 italic flex items-center gap-2">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="12" y1="8" x2="12" y2="12"></line>

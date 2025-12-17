@@ -65,10 +65,10 @@ export default function OnboardingPage() {
   if (isPending) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center bg-[#0c0f12]">
+        <div className="min-h-screen flex items-center justify-center bg-[#0f172a]">
           <div className="text-center space-y-4">
-            <div className="w-16 h-16 border-4 border-[#00f7a3] border-t-transparent rounded-full animate-spin mx-auto"></div>
-            <p className="text-[#00f7a3] font-mono tracking-widest text-lg animate-pulse">
+            <div className="w-16 h-16 border-4 border-[#3b82f6] border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p className="text-[#3b82f6] font-mono tracking-widest text-lg animate-pulse">
               ESTABLISHING NEURAL LINK...
             </p>
           </div>
@@ -82,31 +82,31 @@ export default function OnboardingPage() {
       title={`Neural Onboarding`}
       description="Configure your cybernetic profile"
     >
-      <div className="min-h-[calc(100vh-60px)] flex items-center justify-center px-4 py-16 bg-[#0c0f12]">
+      <div className="min-h-[calc(100vh-60px)] flex items-center justify-center px-4 py-16 bg-[#0f172a]">
         <div
-          className="w-full max-w-3xl mx-auto bg-[#0a0f14]/80 border border-[#00f7a3] rounded-xl shadow-[0_0_20px_#00f7a3] backdrop-blur relative"
+          className="w-full max-w-3xl mx-auto bg-[#1e293b]/80 border border-[#3b82f6] rounded-xl shadow-[0_0_20px_#3b82f6] backdrop-blur relative"
           style={{ maxWidth: "800px" }}
         >
           {/* Scanline effect */}
           <div className="scanline-overlay"></div>
 
           {/* Header */}
-          <div className="text-center space-y-4 relative z-10 px-8 pt-12 pb-8 border-b border-[#00f7a3]/20">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-2 border-[#00f7a3] bg-[#00f7a3]/5 mb-4">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00f7a3" strokeWidth="2">
+          <div className="text-center space-y-4 relative z-10 px-8 pt-12 pb-8 border-b border-[#3b82f6]/20">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-2 border-[#3b82f6] bg-[#3b82f6]/5 mb-4">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
               </svg>
             </div>
             <h1
-              className="text-3xl sm:text-4xl font-bold glitch-text text-[#00f7a3] tracking-widest mb-0"
+              className="text-3xl sm:text-4xl font-bold glitch-text text-[#3b82f6] tracking-widest mb-0"
               style={{
                 fontFamily: 'var(--hud-font-display)',
-                textShadow: "0 0 15px rgba(0,247,163,0.5)"
+                textShadow: "0 0 15px rgba(59,130,246,0.5)"
               }}
             >
               NEURAL CALIBRATION
             </h1>
-            <p className="text-sm font-mono text-[#9aa5b1] tracking-[0.2em] uppercase max-w-md mx-auto">
+            <p className="text-sm font-mono text-[#94a3b8] tracking-[0.2em] uppercase max-w-md mx-auto">
               Optimize system parameters for personalized experience
             </p>
           </div>
@@ -128,7 +128,7 @@ export default function OnboardingPage() {
               <HardwareInput value={hardware} onChange={setHardware} />
             </div>
 
-            <div className="mt-12 pt-8 border-t border-[#9aa5b1]/10">
+            <div className="mt-12 pt-8 border-t border-[#94a3b8]/10">
               <button
                 type="submit"
                 disabled={loading}
@@ -137,9 +137,9 @@ export default function OnboardingPage() {
                   padding: '18px 32px',
                   fontSize: '1rem',
                   background: loading
-                    ? 'rgba(0, 247, 163, 0.15)'
-                    : 'linear-gradient(135deg, rgba(0, 247, 163, 0.08), rgba(0, 234, 255, 0.08))',
-                  boxShadow: '0 0 20px rgba(0,247,163,0.3)'
+                    ? 'rgba(59, 130, 246, 0.15)'
+                    : 'linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08))',
+                  boxShadow: '0 0 20px rgba(59,130,246,0.3)'
                 }}
               >
                 {loading ? (
@@ -165,8 +165,8 @@ export default function OnboardingPage() {
           </form>
 
           <div className="text-center relative z-10 px-8 pb-8">
-            <div className="flex items-center justify-center gap-2 text-xs text-[#9aa5b1]/40 font-mono tracking-widest">
-              <div className="w-2 h-2 rounded-full bg-[#00f7a3] animate-pulse"></div>
+            <div className="flex items-center justify-center gap-2 text-xs text-[#94a3b8]/40 font-mono tracking-widest">
+              <div className="w-2 h-2 rounded-full bg-[#3b82f6] animate-pulse"></div>
               SYNC RATE: 99.9%
             </div>
           </div>

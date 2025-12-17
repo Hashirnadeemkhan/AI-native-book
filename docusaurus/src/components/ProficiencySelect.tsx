@@ -15,7 +15,7 @@ export default function ProficiencySelect({
 }: ProficiencySelectProps) {
   return (
     <div className="group">
-      <label className="block text-[#9aa5b1] text-sm font-mono tracking-[0.15em] mb-5 group-hover:text-[#00f7a3] transition-colors duration-300 flex items-center gap-2">
+      <label className="block text-[#94a3b8] text-sm font-mono tracking-[0.15em] mb-5 group-hover:text-[#3b82f6] transition-colors duration-300 flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
         </svg>
@@ -33,8 +33,8 @@ export default function ProficiencySelect({
                 py-5 px-4 border-2 font-mono text-sm uppercase tracking-wider transition-all duration-300 relative overflow-hidden rounded
                 ${
                   isActive
-                    ? "border-[#00f7a3] bg-[#00f7a3]/10 text-[#00f7a3] shadow-[0_0_25px_rgba(0,247,163,0.4)] scale-[1.03]"
-                    : "border-[#9aa5b1]/20 text-[#9aa5b1]/70 hover:border-[#00eaff] hover:text-[#00eaff] hover:bg-[#00eaff]/5 hover:scale-[1.01]"
+                    ? "border-[#3b82f6] bg-[#3b82f6]/10 text-[#3b82f6] shadow-[0_0_25px_rgba(59,130,246,0.4)] scale-[1.03]"
+                    : "border-[#94a3b8]/20 text-[#94a3b8]/70 hover:border-[#8b5cf6] hover:text-[#8b5cf6] hover:bg-[#8b5cf6]/5 hover:scale-[1.01]"
                 }
               `}
             >
@@ -49,7 +49,7 @@ export default function ProficiencySelect({
 
               {/* Background Scanline animation for active state */}
               {isActive && (
-                <div className="absolute inset-0 bg-[linear-gradient(transparent,rgba(0,247,163,0.1),transparent)] bg-[length:100%_4px] animate-scanline pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(transparent,rgba(59,130,246,0.1),transparent)] bg-[length:100%_4px] animate-scanline pointer-events-none"></div>
               )}
             </button>
           );

@@ -129,19 +129,19 @@ export default function ContentTransformer({ contentSelector = '.markdown' }: Co
 
   // Cybernetic Markdown Components
   const markdownComponents = {
-    p: ({ node, ...props }) => <p className="mb-4 text-lg leading-relaxed text-[#9aa5b1]" {...props} />,
-    h1: ({ node, ...props }) => <h1 className="text-3xl font-orbitron text-[#00f7a3] mb-6 mt-8 border-b border-[#00f7a3]/30 pb-2 uppercase tracking-wide" {...props} />,
+    p: ({ node, ...props }) => <p className="mb-4 text-lg leading-relaxed text-[#94a3b8]" {...props} />,
+    h1: ({ node, ...props }) => <h1 className="text-3xl font-orbitron text-[#3b82f6] mb-6 mt-8 border-b border-[#3b82f6]/30 pb-2 uppercase tracking-wide" {...props} />,
     h2: ({ node, ...props }) => <h2 className="text-2xl font-orbitron text-[#c4fff9] mb-4 mt-6" {...props} />,
-    h3: ({ node, ...props }) => <h3 className="text-xl font-orbitron text-[#00eaff] mb-3 mt-5" {...props} />,
+    h3: ({ node, ...props }) => <h3 className="text-xl font-orbitron text-[#8b5cf6] mb-3 mt-5" {...props} />,
     strong: ({ node, ...props }) => <strong className="text-[#c4fff9] font-weight: bold" {...props} />,
-    ul: ({ node, ...props }) => <ul className="list-disc pl-6 mb-4 text-[#9aa5b1] marker:text-[#00f7a3]" {...props} />,
-    ol: ({ node, ...props }) => <ol className="list-decimal pl-6 mb-4 text-[#9aa5b1]" {...props} />,
+    ul: ({ node, ...props }) => <ul className="list-disc pl-6 mb-4 text-[#94a3b8] marker:text-[#3b82f6]" {...props} />,
+    ol: ({ node, ...props }) => <ol className="list-decimal pl-6 mb-4 text-[#94a3b8]" {...props} />,
     li: ({ node, ...props }) => <li className="mb-2 pl-2" {...props} />,
     code: ({ node, inline, ...props }) =>
       inline ? (
-        <code className="bg-[#00eaff]/10 border border-[#00eaff]/20 text-[#00eaff] px-1.5 py-0.5 rounded-sm font-mono text-sm" {...props} />
+        <code className="bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 text-[#8b5cf6] px-1.5 py-0.5 rounded-sm font-mono text-sm" {...props} />
       ) : (
-        <code className="block bg-[#0a0e12] border border-[#00eaff]/30 text-[#00eaff] p-4 rounded-md font-mono text-sm overflow-x-auto my-4" {...props} />
+        <code className="block bg-[#0f172a] border border-[#8b5cf6]/30 text-[#8b5cf6] p-4 rounded-md font-mono text-sm overflow-x-auto my-4" {...props} />
       ),
     pre: ({ node, ...props }) => <pre className="my-4" {...props} />,
   };
