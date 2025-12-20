@@ -311,6 +311,18 @@ async def callback_github(request: Request, db: AsyncSession = Depends(get_db)):
             raise HTTPException(status_code=400, detail="Invalid OAuth state (CSRF check failed)")
 
         # 2. Exchange Code for Token
+        # Dynamically determine redirect_uri to ensure it matches what was used in the auth request
+        if settings.GITHUB_REDIRECT_URI:
+            redirect_uri = settings.GITHUB_REDIRECT_URI
+        else:
+            base = str(request.base_url)
+            if base.endswith("/api/"):
+                base_root = base[:-len("/api/")]
+            else:
+                base_root = base
+            redirect_uri = f"{base_root}/api/auth/callback/github"
+            logging.info(f"DEBUG: Derived GitHub Redirect URI for token exchange: {redirect_uri}")
+
         async with httpx.AsyncClient() as client:
             token_resp = await client.post(
                 "https://github.com/login/oauth/access_token",
@@ -319,7 +331,7 @@ async def callback_github(request: Request, db: AsyncSession = Depends(get_db)):
                     "client_id": settings.GITHUB_CLIENT_ID,
                     "client_secret": settings.GITHUB_CLIENT_SECRET,
                     "code": code,
-                    "redirect_uri": settings.GITHUB_REDIRECT_URI
+                    "redirect_uri": redirect_uri
                 }
             )
             token_resp.raise_for_status()
